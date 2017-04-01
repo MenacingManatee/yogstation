@@ -972,26 +972,6 @@ var/next_mob_id = 0
 #define REV_EXAMINE_CD 60
 
 /mob/proc/reveal_examine(mob/living/L, range) // we are examining L, and revealing ourselves
-	if(src == L) // so no one can tell if we're checking ourselves out
-		return
-	if(istype(src, /mob/dead/observer))
-		return
-	if(client.prefs.examine_throttle == NO_VISIBLE)
-		return
-	if(client.prefs.examine_throttle == HALF_VISIBLE)
-		if(examineCD)
-			if(world.time > examineCD) // time has passed
-				examineCD = 0
-			else // we're still on the CD.
-				return
-		else
-			examineCD = world.time + REV_EXAMINE_CD
-			return
-	if(istype(src, /mob/living/carbon/human))
-		var/mob/living/carbon/human/human = src
-		if((istype(human.head, /obj/item/clothing/head/helmet/space/hardsuit)))
-			return
-	for(var/mob/M in view(src, range))
-		M << "<span class='small'>[src] looks at [L].</span>"
+	return
 
 #undef REV_EXAMINE_CD

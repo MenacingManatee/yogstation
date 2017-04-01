@@ -171,11 +171,6 @@
 
 
 /atom/proc/examine(mob/user)
-	if(loc != user) // so inventories don't get spotted
-		if(ishuman(user) || ismonkey(user) || isrobot(user))
-			for(var/mob/M in view(7, user))
-				M << "<span class='small'>[user] looks at [src].</span>"
-
 	//This reformat names to get a/an properly working on item descriptions when they are bloody
 	var/f_name = "\a [src]."
 	if(src.blood_DNA && !istype(src, /obj/effect/decal))
