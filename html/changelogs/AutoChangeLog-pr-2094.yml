@@ -1,0 +1,4 @@
+author: AdamElTablawy
+delete-after: True
+changes: 
+  - rscadd: "Removed lavaland and re-added the asteroid. For info why, check [github.com/yogstation13/yogstation/pull/2093](cdn1.rack1.net/github.com/yogstation13/yogstation/pull/2093)"
