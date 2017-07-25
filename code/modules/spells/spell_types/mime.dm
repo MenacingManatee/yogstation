@@ -47,15 +47,21 @@
 	if(!ishuman(usr))
 		return
 	var/mob/living/carbon/human/H = usr
+
 	if(H.mind.miming) // so if you're here to make a vow, you won't be bothered
-		if(world.time < 15000 && !(usr.mind.special_role)) // 25 minutes
-			usr << "<span class='warning'>It's too early into the shift to do this! Play your part!"
+		var/confirm = alert("Are you sure you want to break your vow of silence?", "Confirm", "Yes", "No")
+		if(confirm == "Yes")
+			if(world.time < 1 && !(usr.mind.special_role)) // 25 minutes
+				usr << "<span class='warning'>It's too early into the shift to do this! Play your part!"
+				return
+		else
 			return
 	if(H.mind.miming)
 		still_recharging_msg = "<span class='warning'>You can't break your vow of silence that fast!</span>"
 	else
 		still_recharging_msg = "<span class='warning'>You'll have to wait before you can give your vow of silence again!</span>"
 	..()
+
 
 /obj/effect/proc_holder/spell/targeted/mime/speak/cast(list/targets,mob/user = usr)
 	for(var/mob/living/carbon/human/H in targets)
